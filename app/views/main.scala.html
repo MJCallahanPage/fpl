@@ -4,7 +4,7 @@
  * two arguments, a `String` for the title of the page and an `Html`
  * object to insert into the body of the page.
  *@
-@(title: String)(content: Html)
+@(title: String)(content: Html)(implicit messages: Messages)
 
 <!doctype html>
 <html lang="en">
@@ -20,7 +20,7 @@
         <header>
             <!-- Fixed navbar -->
             <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-                <a class="navbar-brand" href="#">fpl <span class="badge badge-info">API</span></a>
+                <a class="navbar-brand" href="#">@messages("base.fpl") <span class="badge badge-info">@messages("base.api")</span></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -42,7 +42,7 @@
 
         <footer class="footer">
             <div class="container">
-                <span class="text-muted">If I ever have a useful footer message, it will appear here.</span>
+                <span class="text-muted">@messages("footer.message")</span>
             </div>
         </footer>
 
