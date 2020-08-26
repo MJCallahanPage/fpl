@@ -1,1 +1,7 @@
-# https://www.playframework.com/documentation/latest/ScalaI18N
+base.fpl = fpl
+base.api = API
+
+footer.message = If I ever have a useful footer message, it will appear here.
+
+index.title = Welcome to fpl API
+index.heading = Welcome to fpl
