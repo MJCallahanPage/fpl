@@ -1,5 +1,5 @@
-@()
+@()(implicit messages: Messages)
 
-@main("Welcome to Play") {
-  <h1>Welcome to fpl <span class="badge badge-info">API</span></h1>
+@main(messages("index.title")) {
+  <h1>@messages("index.heading") <span class="badge badge-info">@messages("badge.api")</span></h1>
 }

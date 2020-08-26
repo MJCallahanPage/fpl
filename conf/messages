@@ -1,1 +1,4 @@
-# https://www.playframework.com/documentation/latest/ScalaI18N
+badge.api = API
+
+index.title = Welcome to fpl API
+index.heading = Welcome to fpl
