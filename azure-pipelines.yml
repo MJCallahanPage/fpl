@@ -12,7 +12,7 @@ resources:
 variables:
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '047c6179-b7a3-4017-aded-4c3d3f343b77'
-  imageRepository: 'mjcallahanpagefpl'
+  imageRepository: 'fantasypl'
   containerRegistry: 'fantasyplacr.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
@@ -54,5 +54,5 @@ stages:
             ResourceGroupName: 'fantasy-pl-rg'
             SlotName: 'production'
             DockerNamespace: 'fantasyplacr.azurecr.io'
-            DockerRepository: 'mjcallahanpagefpl'
+            DockerRepository: 'fantasypl'
             StartupCommand: 'sbt "run 80"'
