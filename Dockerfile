@@ -14,6 +14,4 @@ WORKDIR /fpl
 
 ADD . /fpl
 
-EXPOSE 8080
-
-CMD sbt 'run 8080'
+EXPOSE 80
