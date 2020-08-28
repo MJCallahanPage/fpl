@@ -1,13 +1,19 @@
 package controllers
 
+import config.AppConfig
+import connectors.FPLConnector
 import javax.inject._
-import play.api.i18n.Messages.implicitMessagesProviderToMessages
 import play.api.mvc._
 
-@Singleton
-class HomeController @Inject()(val controllerComponents: MessagesControllerComponents) extends MessagesBaseController {
+import scala.concurrent.ExecutionContext.Implicits.global
 
-  def index() = Action { implicit request: MessagesRequest[AnyContent] =>
-    Ok(views.html.index())
+@Singleton
+class HomeController @Inject()(val controllerComponents: MessagesControllerComponents,
+                              fplConnector: FPLConnector)(implicit appConfig: AppConfig) extends MessagesBaseController {
+
+  def index(): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    fplConnector.getData().map { oModel =>
+      Ok(views.html.index(oModel))
+    }
   }
 }

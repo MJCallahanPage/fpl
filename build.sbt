@@ -9,11 +9,11 @@ lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 scalaVersion := "2.13.3"
 
-libraryDependencies += guice
-libraryDependencies ++= Seq(
+libraryDependencies ++= Seq(guice, ws,
   "com.adrianhurt"            %% "play-bootstrap"       % "1.6.1-P28-B4",
   "org.webjars"               %  "bootstrap"            % "4.5.2",
   "org.webjars"               %  "jquery"               % "3.5.1",
+  "org.webjars"               %  "bootstrap-table"      % "1.9.1",
   "org.scalatestplus.play"    %% "scalatestplus-play"   % "5.0.0" % Test
 )
 
