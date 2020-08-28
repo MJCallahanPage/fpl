@@ -53,5 +53,6 @@ stages:
             deployToSlotOrASE: true
             ResourceGroupName: 'fantasy-pl-rg'
             SlotName: 'production'
-            StartupCommand: 'sbt ''run 80'''
-
+            DockerNamespace: 'fantasyplacr.azurecr.io'
+            DockerRepository: 'mjcallahanpagefpl'
+            StartupCommand: 'sbt "run 80"'
