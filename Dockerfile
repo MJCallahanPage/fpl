@@ -16,8 +16,4 @@ ADD . /fpl
 
 EXPOSE 9000
 
-<<<<<<< HEAD
 ENTRYPOINT ["sbt run"]
-=======
-CMD sbt run
->>>>>>> f8714821add000df2dc72384446dff746148c83d
