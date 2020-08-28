@@ -38,13 +38,20 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    - task: AzureRmWebAppDeployment@4
-        inputs:
-          ConnectionType: 'AzureRM'
-          azureSubscription: 'fantasy-pl - Azure'
-          appType: 'webAppContainer'
-          WebAppName: 'fantasy-pl'
-          deployToSlotOrASE: true
-          ResourceGroupName: 'fantasy-pl-rg'
-          SlotName: 'production'
-          StartupCommand: 'sbt ''run 80'''
+
+- stage: Deploy
+  displayName: Deploy to azure
+  jobs:
+    - job:
+      steps:
+        - task: AzureRmWebAppDeployment@4
+          inputs:
+            ConnectionType: 'AzureRM'
+            azureSubscription: 'fantasy-pl - Azure'
+            appType: 'webAppContainer'
+            WebAppName: 'fantasy-pl'
+            deployToSlotOrASE: true
+            ResourceGroupName: 'fantasy-pl-rg'
+            SlotName: 'production'
+            StartupCommand: 'sbt ''run 80'''
+
