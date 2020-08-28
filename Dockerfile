@@ -14,6 +14,6 @@ WORKDIR /fpl
 
 ADD . /fpl
 
-EXPOSE 80
+EXPOSE 9000
 
-CMD sbt 'run 80'
+CMD sbt run
