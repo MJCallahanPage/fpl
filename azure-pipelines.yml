@@ -56,4 +56,4 @@ stages:
             DockerNamespace: 'fantasyplacr.azurecr.io'
             DockerRepository: 'fantasypl'
             DockerImageTag: '$(tag)'
-            StartupCommand: 'sbt "run 80"'
+            StartupCommand: 'sbt run'
