@@ -16,4 +16,4 @@ ADD . /fpl
 
 EXPOSE 9000
 
-ENTRYPOINT ["sbt run"]
+CMD sbt run
