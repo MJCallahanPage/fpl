@@ -1,4 +1,4 @@
-FROM openjdk:8-jre
+FROM openjdk:8
 
 ENV SBT_VERSION 1.3.13
 ENV PORT 9000
