@@ -1,6 +1,8 @@
 FROM openjdk:8
 
 ENV SBT_VERSION 1.3.13
+ENV PORT 8080
+ENV HOST 0.0.0.0
 
 RUN \
   curl -L -o sbt-$SBT_VERSION.deb http://dl.bintray.com/sbt/debian/sbt-$SBT_VERSION.deb && \
@@ -10,11 +12,10 @@ RUN \
   apt-get install sbt && \
   sbt sbtVersion
 
-WORKDIR /fpl
+WORKDIR /usr/local/app
 
-ADD . /fpl
-COPY run.sh /usr/local/bin/
 
-RUN chmod u+x /usr/local/bin/run.sh
-EXPOSE 8000 2222 ${PORT:-80}
-ENTRYPOINT ["run.sh"]
+ADD . /usr/local/app
+
+EXPOSE 8080
+CMD sbt 'run 8080'
