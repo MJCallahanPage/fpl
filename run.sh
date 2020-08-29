@@ -3,4 +3,4 @@ set -e
 
 echo "Starting Play App Server"
 
-sbt 'run 8000'
+sbt 'run ${PORT:-80}'

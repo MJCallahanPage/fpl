@@ -16,5 +16,5 @@ ADD . /fpl
 COPY run.sh /usr/local/bin/
 
 RUN chmod u+x /usr/local/bin/run.sh
-EXPOSE 8000 2222 80
+EXPOSE 8000 2222 ${PORT:-80}
 ENTRYPOINT ["run.sh"]
