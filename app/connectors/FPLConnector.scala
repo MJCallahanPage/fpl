@@ -16,7 +16,6 @@ class FPLConnector @Inject()(http: WSClient)(implicit appConfig: AppConfig) exte
     http.url(appConfig.fplUrl).get().map { response =>
       response.status match {
         case Status.OK =>
-          println(response.json)
           response.json.validate[FPLDataModel] match {
             case JsSuccess(value, _) => Some(value)
             case JsError(errors) =>
