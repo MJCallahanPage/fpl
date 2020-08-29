@@ -11,9 +11,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '047c6179-b7a3-4017-aded-4c3d3f343b77'
+  dockerRegistryServiceConnection: 'c742e780-7490-47f8-aa38-c001d7d33236'
   imageRepository: 'fantasypl'
-  containerRegistry: 'fantasyplacr.azurecr.io'
+  containerRegistry: 'fplcontainers.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
   tag: '$(Build.BuildId)'
   
@@ -38,21 +38,3 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
-- stage: Deploy
-  displayName: Deploy to azure
-  jobs:
-    - job:
-      steps:
-        - task: AzureRmWebAppDeployment@4
-          inputs:
-            ConnectionType: 'AzureRM'
-            azureSubscription: 'fantasy-pl - Azure'
-            appType: 'webAppContainer'
-            WebAppName: 'fantasy-pl'
-            deployToSlotOrASE: true
-            ResourceGroupName: 'fantasy-pl-rg'
-            SlotName: 'production'
-            DockerNamespace: 'fantasyplacr.azurecr.io'
-            DockerRepository: 'fantasypl'
-            DockerImageTag: '$(tag)'
