@@ -18,3 +18,5 @@ ADD . /usr/local/app
 
 EXPOSE 9000
 CMD sbt stage
+
+ENTRYPOINT ./target/universal/stage/bin/fantasy-premier-league -Dplay.http.secret.key='bananaMyKeyHashBanaas!@£!$@$$%!%!%@!%@!%RWSEGWFER£GBV£R'
