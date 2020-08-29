@@ -1,7 +1,7 @@
-FROM openjdk:8
+FROM openjdk:8-jre
 
 ENV SBT_VERSION 1.3.13
-ENV PORT 8080
+ENV PORT 9000
 ENV HOST 0.0.0.0
 
 RUN \
@@ -14,8 +14,7 @@ RUN \
 
 WORKDIR /usr/local/app
 
-
 ADD . /usr/local/app
 
-EXPOSE 8080
-CMD sbt 'run 8080'
+EXPOSE 9000
+CMD sbt stage
