@@ -38,3 +38,19 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    steps:
+    - task: AzureRmWebAppDeployment@4
+      inputs:
+        ConnectionType: 'AzureRM'
+        azureSubscription: 'Free Trial(c742e780-7490-47f8-aa38-c001d7d33236)'
+        appType: 'webAppContainer'
+        WebAppName: 'fantasy-pl-api'
+        deployToSlotOrASE: true
+        ResourceGroupName: 'fpl-resource-group'
+        SlotName: 'production'
+        DockerNamespace: '$(containerRegistry)'
+        DockerRepository: '$(imageRepository)'
+        DockerImageTag: '$(tag)'
