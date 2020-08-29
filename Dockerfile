@@ -1,6 +1,5 @@
 FROM openjdk:8
 
-ENV JAVA_HOME=$(/usr/libexec/java_home)
 ENV SBT_VERSION=1.3.13
 ENV PORT=9000
 ENV HOST=0.0.0.0
@@ -12,7 +11,6 @@ RUN \
   apt-get update && \
   apt-get install sbt && \
   sbt sbtVersion && \
-  java -version
 
 WORKDIR /usr/local/app
 
