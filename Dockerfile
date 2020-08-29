@@ -13,7 +13,8 @@ RUN \
 WORKDIR /fpl
 
 ADD . /fpl
+COPY run.sh /usr/local/bin/
 
-EXPOSE 9000
-
-CMD sbt run
+RUN chmod u+x /usr/local/bin/run.sh
+EXPOSE 8000 2222 80
+ENTRYPOINT ["run.sh"]
