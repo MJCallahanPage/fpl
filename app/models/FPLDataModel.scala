@@ -1,6 +1,7 @@
 package models
 
 import models.player.Player
+import models.team.Team
 import play.api.libs.json.Reads._
 import play.api.libs.json._
 import play.api.libs.functional.syntax._
@@ -10,7 +11,6 @@ case class FPLDataModel(players: Seq[Player],
 
   private val playersForTeam = (team: Team) => team.copy(players = players.filter(_.teamID == team.id))
   val teamsWithPlayers: Seq[Team] = teams map playersForTeam
-
 }
 
 object FPLDataModel {
