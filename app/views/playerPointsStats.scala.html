@@ -1,4 +1,5 @@
-@(oModel: Option[FPLDataModel])(implicit messages: Messages)
+@import config.AppConfig
+@(oModel: Option[FPLDataModel])(implicit messages: Messages, appConfig: AppConfig)
 
   @main(messages("playerPointsStats.title")) {
 
@@ -23,8 +24,8 @@
               <tr>
                 <td>
                   <img  width="40px"
-                        src="https://resources.premierleague.com/premierleague/photos/players/110x140/p@{player.image.replace(".jpg", ".png")}"
-                        onerror="this.onerror=null;this.src='https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_@{model.teams.find(_.id == player.teamID).map(_.code).getOrElse("")}-66.webp';"
+                        src="@{player.imageUrl}"
+                        onerror="this.onerror=null;this.src='@{appConfig.fplShirtAsset(model.teams.find(_.id == player.teamID).map(_.code).getOrElse(0))}';"
                         />
                   @player.shirtName
                 </td>

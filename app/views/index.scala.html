@@ -1,4 +1,5 @@
-@(oModel: Option[FPLDataModel])(implicit messages: Messages)
+@import config.AppConfig
+@(oModel: Option[FPLDataModel])(implicit messages: Messages, appConfig: AppConfig)
 
   @main(messages("index.title")) {
 
@@ -25,7 +26,7 @@
               <tr>
                 <td>
                   <img  width="24px"
-                  src="https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_@{team.code}-66.webp" />
+                  src="@{team.shirtImageUrl}" />
                 </td>
                 <td>@player.shirtName</td>
                 <td>@player.price</td>

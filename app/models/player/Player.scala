@@ -1,5 +1,6 @@
 package models.player
 
+import config.AppConfig
 import play.api.Logging
 import play.api.libs.functional.syntax._
 import play.api.libs.json.{Reads, __}
@@ -32,6 +33,7 @@ case class Player(firstName: String,
   }
 
   val avgPointsPerGame = pointsPerMinute * 90
+  def imageUrl(implicit appConfig: AppConfig) = appConfig.fplPlayerAsset(image)
 }
 
 object Player {
