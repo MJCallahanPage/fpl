@@ -1,42 +1,41 @@
 @(oModel: Option[FPLDataModel])(implicit messages: Messages)
 
-  @main(messages("index.title")) {
+  @main(messages("playerPointsStats.title")) {
 
-    <h1>@messages("index.heading") <span class="badge badge-info">@messages("base.api")</span></h1>
+    <h1>@messages("playerPointsStats.heading")</h1>
 
     @oModel.map { model =>
 
       <table class="table table-striped table-bordered table-dark table-hover">
         <thead>
           <tr>
-            <th scope="col">Team</th>
-            <th scope="col">Shirt name</th>
-            <th scope="col">Value</th>
+            <th scope="col">Player</th>
             <th scope="col">Position</th>
             <th scope="col">Minutes Played</th>
             <th scope="col">Points Earned</th>
             <th scope="col">Points Per Minute</th>
             <th scope="col">avg. Points Per Game</th>
+            <th scope="col">Price</th>
           </tr>
         </thead>
         <tbody>
-          @for(team <- model.teamsWithPlayers) {
-            @for(player <- team.players.sortBy(_.positionId)) {
+            @for(player <- model.players.sortBy(_.pointsPerMinute).reverse) {
               <tr>
                 <td>
-                  <img  width="24px"
-                  src="https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_@{team.code}-66.webp" />
+                  <img  width="40px"
+                        src="https://resources.premierleague.com/premierleague/photos/players/110x140/p@{player.image.replace(".jpg", ".png")}"
+                        onerror="this.onerror=null;this.src='https://fantasy.premierleague.com/dist/img/shirts/standard/shirt_@{model.teams.find(_.id == player.teamID).map(_.code).getOrElse("")}-66.webp';"
+                        />
+                  @player.shirtName
                 </td>
-                <td>@player.shirtName</td>
-                <td>@player.price</td>
                 <td>@player.position</td>
                 <td>@player.stats.minutes</td>
                 <td>@player.fplStats.points</td>
                 <td>@player.pointsPerMinute</td>
                 <td>@player.avgPointsPerGame</td>
+                <td>@player.price</td>
               </tr>
             }
-          }
         </tbody>
       </table>
     }

@@ -59,6 +59,7 @@ object PlayerConstants {
     firstName = "Christian",
     lastName= "Pulisic",
     shirtName = "Pulisic",
+    image = "176413.jpg",
     teamID = 5,
     positionId= 3,
     value= 85,

@@ -10,7 +10,7 @@ case class Performance(position: Int,
                        draw: Int,
                        loss: Int,
                        points: Int,
-                       form: String
+                       form: Option[String]
                       ) {
   val scored: Int = 0 //to be calculated from fixtures in future.
   val conceded: Int = 0 //to be calculated from fixtures in future.
@@ -25,6 +25,6 @@ object Performance {
       (__ \ "draw").read[Int] and
       (__ \ "loss").read[Int] and
       (__ \ "points").read[Int] and
-      (__ \ "form").read[String]
+      (__ \ "form").readNullable[String]
     ) (Performance.apply _)
 }

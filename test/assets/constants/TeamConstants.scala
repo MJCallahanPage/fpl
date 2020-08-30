@@ -12,7 +12,7 @@ object TeamConstants {
     draw = 8,
     loss = 2,
     points = 92,
-    form = "WDWLW"
+    form = Some("WDWLW")
   )
 
   val exampleRating: Rating = Rating(
@@ -27,6 +27,7 @@ object TeamConstants {
 
   val exampleTeam: Team = Team(
     id = 5,
+    code = 8,
     name = "Chelsea",
     abbr = "CHE",
     players = Seq(),
