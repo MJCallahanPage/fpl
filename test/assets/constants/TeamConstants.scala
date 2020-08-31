@@ -58,5 +58,4 @@ object TeamConstants {
     "strength_defence_away"-> 1250,
     "pulse_id"-> 4
   )
-
 }
