@@ -1,6 +1,6 @@
 package utils
 
-import java.math.MathContext
+import Ordering.Implicits._
 
 trait MathUtils {
 
@@ -16,14 +16,21 @@ trait MathUtils {
   }
 
   def standardise(value: BigDecimal, values: Seq[BigDecimal]): BigDecimal = {
-    ((value - mean(values)) /
-      stdDev(variance(values).toDouble))
+    (value - mean(values)) /
+      stdDev(variance(values).toDouble)
+  }
+
+  def minMaxBoundary[T : Numeric](value: T, min: T, max: T): T = {
+    value match {
+      case x if x <= min => min
+      case x if x >= max => max
+      case _ => value
+    }
   }
 
   def std(value: BigDecimal, values: Seq[BigDecimal]): BigDecimal = {
-    val standardised = ((standardise(value, values) * 2.5) + 5).setScale(1, BigDecimal.RoundingMode.HALF_UP)
-
-    if(standardised > 10) 10 else standardised
+    val standardised = ((standardise(value, values) * 2) + 5).setScale(1, BigDecimal.RoundingMode.HALF_UP)
+    minMaxBoundary(standardised, 0, 10)
   }
 
   def normalise(value: BigDecimal, values: Seq[BigDecimal]): BigDecimal = {

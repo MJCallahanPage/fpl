@@ -1,11 +1,9 @@
 package models.team
 
-import com.fasterxml.jackson.annotation.JsonInclude
 import config.AppConfig
 import models.player.Player
 import play.api.libs.functional.syntax._
 import play.api.libs.json.{Reads, __}
-import play.core.routing.Include
 
 case class Team(id: Int,
                 code: Int,
