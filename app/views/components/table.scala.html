@@ -1,0 +1,21 @@
+
+@this()
+
+@(headerContent: Seq[Html], rowContent: Seq[Html])(implicit messages: Messages)
+
+<table class="table table-striped table-bordered table-dark table-hover">
+    <thead>
+        <tr>
+            @headerContent.map { header =>
+                <th scope="col">@header</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @rowContent.map { row =>
+                <td>@row</td>
+            }
+        </tr>
+    </tbody>
+</table>

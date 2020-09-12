@@ -15,14 +15,6 @@ class PlayerPointsStatsController @Inject()(val controllerComponents: MessagesCo
 
   def onPageLoad(): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     fplConnector.getData().map { oModel: Option[FPLDataModel] =>
-      fplConnector.getFixturesData().map { oFixtures: Option[Seq[Fixture]] =>
-        oFixtures.map(fixtures =>
-          println(fixtures)
-        )
-      }
-
-      //println(oModel.map(_.teamsWithStandardisedRatings))
-
       Ok(views.html.playerPointsStats(oModel))
     }
   }
