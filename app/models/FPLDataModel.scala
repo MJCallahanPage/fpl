@@ -1,11 +1,13 @@
 package models
 
 import models.player.Player
-import models.team.Team
+import models.team.{Club, Team}
 import play.api.libs.functional.syntax._
 import play.api.libs.json.Reads._
 import play.api.libs.json._
 import utils.MathUtils
+
+import scala.language.postfixOps
 
 case class FPLDataModel(players: Seq[Player],
                         teams: Seq[Team]) extends MathUtils {
@@ -22,8 +24,12 @@ case class FPLDataModel(players: Seq[Player],
       defenceHome = std(team.rating.defenceHome, teams.map(team => team.rating.defenceHome)),
       defenceAway = std(team.rating.defenceAway, teams.map(team => team.rating.defenceAway))
     ))
-  
   val teamsWithStandardisedRatings: Seq[Team] = teams map standardisedRatings
+
+  val teamNameFromId: Map[Int, String] = teams.map(_.id) zip teams.map(_.name) toMap
+  val teamFromId: Map[Int, Team] = teams.map(_.id) zip teamsWithStandardisedRatings toMap
+  val idFromTeam: Map[String, Int] = teams.map(_.name) zip teams.map(_.id) toMap
+
 }
 
 object FPLDataModel {
