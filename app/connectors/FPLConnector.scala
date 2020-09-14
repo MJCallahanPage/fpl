@@ -3,10 +3,10 @@ package connectors
 import config.AppConfig
 import javax.inject.Inject
 import models.FPLDataModel
-import models.fixtures.Fixture
+import models.fixtures.{Fixture, Fixtures}
 import play.api.Logging
 import play.api.http.Status
-import play.api.libs.json.{JsError, JsSuccess}
+import play.api.libs.json._
 import play.api.libs.ws.WSClient
 
 import scala.concurrent.{ExecutionContext, Future}

@@ -7,16 +7,17 @@ import play.api.libs.json.{Reads, __}
 
 case class Team(id: Int,
                 code: Int,
-                name: String,
+                name: String,     //TODO convert to club enum
                 abbr: String,
                 players: Seq[Player] = Seq(),
                 performance: Performance,
-                rating: Rating
+                rating: Ratings
                ) {
   def shirtImageUrl(implicit appConfig: AppConfig) = appConfig.fplShirtAsset(code)
 }
 
 object Team {
+
   implicit val reads: Reads[Team] = (
     (__ \ "id").read[Int] and
       (__ \ "code").read[Int] and
@@ -24,6 +25,6 @@ object Team {
       (__ \ "short_name").read[String] and
       Reads.pure(Seq()) and
       Performance.reads and
-      Rating.reads
+      Ratings.reads
     ) (Team.apply _)
 }

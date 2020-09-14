@@ -1,6 +1,6 @@
 package assets.constants
 
-import models.team.{Performance, Rating, Team}
+import models.team.{Performance, Ratings, Team}
 import play.api.libs.json.Json
 
 object TeamConstants {
@@ -15,7 +15,7 @@ object TeamConstants {
     form = Some("WDWLW")
   )
 
-  val exampleRating: Rating = Rating(
+  val exampleRating: Ratings = Ratings(
     strength = 4,
     overallHome = 1200,
     overallAway = 1260,

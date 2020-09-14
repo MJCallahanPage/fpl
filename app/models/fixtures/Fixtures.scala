@@ -1,14 +1,14 @@
 package models.fixtures
 
 import models.FPLDataModel
-import play.api.libs.json.{Reads, _}
+import models.team.Club.Club
 
 case class Fixtures(fixtures: Seq[Fixture])
                    (implicit val fplDataModel: FPLDataModel) {
 
   //TODO handle double gameweeks
-  def findOpponent(team: String, gameweek: Int): (Int, Boolean) = {
-    val id: Int = fplDataModel.idFromTeam(team)
+  def findOpponent(team: Club, gameweek: Int): (Int, Boolean) = {
+    val id: Int = fplDataModel.idFromTeam(team.toString)
     val gameweekFixture = teamFixtures(team).filter(_.gameweek.contains(gameweek)).head
     gameweekFixture.homeTeamId match {
       case id => (gameweekFixture.awayTeamId, true)
@@ -20,13 +20,13 @@ case class Fixtures(fixtures: Seq[Fixture])
     fixtures.filter(_.gameweek.contains(gameweek))
   }
 
-  def teamFixtures(team: String): Seq[Fixture] = {
+  def teamFixtures(team: Club): Seq[Fixture] = {
     fixtures.filter(fixture =>
-      fixture.homeTeamId == fplDataModel.idFromTeam(team: String) || fixture.awayTeamId == fplDataModel.idFromTeam(team)
+      fixture.homeTeamId == fplDataModel.idFromTeam(team.toString: String) || fixture.awayTeamId == fplDataModel.idFromTeam(team.toString)
     )
   }
 
-  def upcomingFixtures(team: String, startGameweek: Int, endGameweek: Int): Seq[Fixture] = {
+  def upcomingFixtures(team: Club, startGameweek: Int, endGameweek: Int): Seq[Fixture] = {
     teamFixtures(team).filter(fixture =>
       (startGameweek to endGameweek).contains(fixture.gameweek.getOrElse(0))
     )
